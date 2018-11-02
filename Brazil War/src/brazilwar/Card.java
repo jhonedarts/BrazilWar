@@ -7,9 +7,9 @@ package brazilwar;
 
 /**
  *
- * @author jhone
+ * @author darts
  */
-public class StateCard {
-    private int symbol; //usar um enum pra ficar mais legivel, será triangulo, circulo ou quadrado
-    private int state; // id do estado
+public class Card {
+    private int symbol;
+    private int name;
 }

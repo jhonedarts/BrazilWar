@@ -1,0 +1,122 @@
+--------------------------------------------------------------
+TELAS DE INICIALIZAÇÃO DO JOGO
+--------------------------------------------------------------
+Digite o número de jogadores: 
+3
+Associe uma cor ao jogador 1: 
+Verde
+Associe uma cor ao jogador 2: 
+Azul
+Associe uma cor ao jogador 3: 
+Vermelho
+--------------------------------------------------------------
+Mapa
+
+Norte - AC(Verde-1), AM(Verde-1), AP(Azul-1), PA(Vermelho-1), RO(Azul-1), RR(Vermelho-1)
+Nordeste - AL(Azul-1), BA(Azul-1), CE(Verde-1), MA(Azul-1), PE(Vermelho-1), PB(Vermelho-1), PI(Verde-1), RN(Verde-1), SE(Azul-1)
+Sudeste - ES(Vermelho-1), MG(Azul-1), RJ(Verde-1), SP(Verde-1)
+Centro-oeste - GO(Azul-1), MT(Vermelho-1)
+Sul - PR(Vermelho-1), RS(Verde-1), SC(Vermelho-1)
+
+Jogador 1, você tem 4 exércitos para distribuir:
+AC-2, AM-2
+--------------------------------------------------------------
+Mapa
+
+Norte - AC(Verde-3), AM(Verde-3), AP(Azul-1), PA(Vermelho-1), RO(Azul-1), RR(Vermelho-1)
+Nordeste - AL(Azul-1), BA(Azul-1), CE(Verde-1), MA(Azul-1), PE(Vermelho-1), PB(Vermelho-1), PI(Verde-1), RN(Verde-1), SE(Azul-1)
+Sudeste - ES(Vermelho-1), MG(Azul-1), RJ(Verde-1), SP(Verde-1)
+Centro-oeste - GO(Azul-1), MT(Vermelho-1)
+Sul - PR(Vermelho-1), RS(Verde-1), SC(Vermelho-1)
+
+Jogador 2, você tem 4 exércitos para distribuir:
+AP-3, MA-1
+--------------------------------------------------------------
+Mapa
+
+Norte - AC(Verde-3), AM(Verde-3), AP(Azul-4), PA(Vermelho-1), RO(Azul-1), RR(Vermelho-1)
+Nordeste - AL(Azul-1), BA(Azul-1), CE(Verde-1), MA(Azul-2), PE(Vermelho-1), PB(Vermelho-1), PI(Verde-1), RN(Verde-1), SE(Azul-1)
+Sudeste - ES(Vermelho-1), MG(Azul-1), RJ(Verde-1), SP(Verde-1)
+Centro-oeste - GO(Azul-1), MT(Vermelho-1)
+Sul - PR(Vermelho-1), RS(Verde-1), SC(Vermelho-1)
+
+Jogador 3, você tem 4 exércitos para distribuir:
+ES-4
+--------------------------------------------------------------
+FIM DAS TELAS DE INICIALIZAÇÃO DO JOGO
+--------------------------------------------------------------
+
+
+--------------------------------------------------------------
+JOGADOR 1 REALIZA ATAQUE
+--------------------------------------------------------------
+Mapa
+
+Norte - AC(Verde-3), AM(Verde-3), AP(Azul-4), PA(Vermelho-1), RO(Azul-1), RR(Vermelho-1)
+Nordeste - AL(Azul-1), BA(Azul-1), CE(Verde-1), MA(Azul-2), PE(Vermelho-1), PB(Vermelho-1), PI(Verde-1), RN(Verde-1), SE(Azul-1)
+Sudeste - ES(Vermelho-5), MG(Azul-1), RJ(Verde-1), SP(Verde-1)
+Centro-oeste - GO(Azul-1), MT(Vermelho-1)
+Sul - PR(Vermelho-1), RS(Verde-1), SC(Vermelho-1)
+
+1 – Distribuição 
+2 – Combate
+3 – Encerrar
+
+Jogador 1, digite a opção desejada: 
+2
+
+Indique o estado origem e destino do ataque: 
+AM-MT
+
+Você venceu, indique quantos exércitos moverá:
+2
+--------------------------------------------------------------
+Mapa
+
+Norte - AC(Verde-3), AM(Verde-1), AP(Azul-4), PA(Vermelho-1), RO(Azul-1), RR(Vermelho-1)
+Nordeste - AL(Azul-1), BA(Azul-1), CE(Verde-1), MA(Azul-2), PE(Vermelho-1), PB(Vermelho-1), PI(Verde-1), RN(Verde-1), SE(Azul-1)
+Sudeste - ES(Vermelho-5), MG(Azul-1), RJ(Verde-1), SP(Verde-1)
+Centro-oeste - GO(Azul-1), MT(Verde-2)
+Sul - PR(Vermelho-1), RS(Verde-1), SC(Vermelho-1)
+
+1 – Distribuição 
+2 – Combate
+3 – Encerrar
+
+Jogador 1, digite a opção desejada: 
+3
+--------------------------------------------------------------
+Mapa
+
+Norte - AC(Verde-3), AM(Verde-1), AP(Azul-4), PA(Vermelho-1), RO(Azul-1), RR(Vermelho-1)
+Nordeste - AL(Azul-1), BA(Azul-1), CE(Verde-1), MA(Azul-2), PE(Vermelho-1), PB(Vermelho-1), PI(Verde-1), RN(Verde-1), SE(Azul-1)
+Sudeste - ES(Vermelho-5), MG(Azul-1), RJ(Verde-1), SP(Verde-1)
+Centro-oeste - GO(Azul-1), MT(Verde-2)
+Sul - PR(Vermelho-1), RS(Verde-1), SC(Vermelho-1)
+
+1 - Redistribuir
+2 - Carta-estado
+3 - Fim da jogada
+
+Jogador 1, digite a opção desejada: 
+3
+--------------------------------------------------------------
+FIM ATAQUE JOGADOR 1
+--------------------------------------------------------------
+
+--------------------------------------------------------------
+INICIO RODADA DO JOGADOR 2
+--------------------------------------------------------------
+Mapa
+
+Norte - AC(Verde-3), AM(Verde-3), AP(Azul-4), PA(Vermelho-1), RO(Azul-1), RR(Vermelho-1)
+Nordeste - AL(Azul-1), BA(Azul-1), CE(Verde-1), MA(Azul-2), PE(Vermelho-1), PB(Vermelho-1), PI(Verde-1), RN(Verde-1), SE(Azul-1)
+Sudeste - ES(Vermelho-5), MG(Azul-1), RJ(Verde-1), SP(Verde-1)
+Centro-oeste - GO(Azul-1), MT(Vermelho-1)
+Sul - PR(Vermelho-1), RS(Verde-1), SC(Vermelho-1)
+
+1 – Distribuição 
+2 – Combate
+3 – Encerrar
+
+Jogador 2, digite a opção desejada:
