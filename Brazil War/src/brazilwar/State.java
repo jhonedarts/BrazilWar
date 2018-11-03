@@ -13,8 +13,40 @@ import java.util.ArrayList;
  */
 public class State {
     
-    private ArrayList<Soldier> army;
-    private int armyColor; //nessa logica o estado recebe uma marcação de que é o dono dele
+    private int soldiersQuantity;
+    private String soldiersColor; //nessa logica o estado recebe uma marcação de que é o dono dele
                                 //seria melhor por o jogador pra ter uma lista de estados ou dos id dos estados?
+    private String initials;
+
+    public State(String initials) {
+        this.soldiersQuantity = 0;
+        this.soldiersColor = "none";
+        this.initials = initials;
+    }
+
+    public int getArmyQuantity() {
+        return soldiersQuantity;
+    }
+
+    public void addSoldiers(int soldiers) {
+        this.soldiersQuantity += soldiersQuantity;
+    }
+    
+    public void removeSoldiers(int soldiers) {
+        this.soldiersQuantity -= soldiersQuantity;
+    }
+
+    public String getArmyColor() {
+        return soldiersColor;
+    }
+
+    public void setArmyColor(String soldiersColor) {
+        this.soldiersColor = soldiersColor;
+    }
+
+    public String getInitials() {
+        return initials;
+    }
+   
     
 }

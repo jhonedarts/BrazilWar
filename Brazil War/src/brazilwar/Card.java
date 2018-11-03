@@ -10,6 +10,19 @@ package brazilwar;
  * @author darts
  */
 public class Card {
-    private int symbol;
-    private int name;
+    private String symbol;
+    private String name;
+
+    public Card(String symbol, String name) {
+        this.symbol = symbol;
+        this.name = name;
+    }
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public String getName() {
+        return name;
+    }
+    
 }

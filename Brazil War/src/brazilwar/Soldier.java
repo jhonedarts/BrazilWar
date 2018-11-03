@@ -10,5 +10,5 @@ package brazilwar;
  * @author darts
  */
 public class Soldier {
-    
+    //nao usada
 }
