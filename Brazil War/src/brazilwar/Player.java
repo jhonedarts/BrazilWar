@@ -25,16 +25,21 @@ public class Player {
     }
     
     public boolean canTradeCards(){
-        //serámarcado zero para iguais e 1 para diferentes, depois é só contar
+        //será contado as ocorrencias de cada simbolo
         int occurrences[] = new int[Parameters.SYMBOLS.length]; 
+        
         //impossivel ter uma combinação
         if (this.cards.size() < Parameters.SYMBOLS.length){
             return false;
         }
-        //impossivel não ter uma combinação
-        if(this.cards.size() > (Parameters.SYMBOLS.length-1)*Parameters.SYMBOLS.length-1){
+        else if(hasJoker()){//tem 3 ou mais cartas e um coringa entre elas
             return true;
         }
+        //impossivel não ter uma combinação
+        else if(this.cards.size() > (Parameters.SYMBOLS.length-1)*Parameters.SYMBOLS.length-1){
+            return true;
+        }
+        
         for (int i = 0; i < Parameters.SYMBOLS.length; i++) {
             for (int j = 0; j < this.cards.size(); j++) {
                 if(Parameters.SYMBOLS[i].equals(this.cards.get(j).getSymbol())){
@@ -49,10 +54,9 @@ public class Player {
         return true;
     }
     
-    public void removeTradeCards() {
-        
-    }
-    
+    public void removeCard(Card card) {
+        this.cards.remove(card);
+    }    
     
     public boolean canAddCard() {
         return this.cards.size() < Parameters.LIMIT_CARDS_IN_HANDS; 
@@ -66,17 +70,20 @@ public class Player {
         return statesAmount;
     }
 
-    public void setStatesAmount(int statesAmount) {
-        this.statesAmount = statesAmount;
+    public void increasesStatesAmount() {
+        this.statesAmount++;
     }
 
     public String getColor() {
         return color;
     }
-
-    public void setColor(String color) {
-        this.color = color;
+    
+    private boolean hasJoker(){
+        for(Card card : this.cards){
+            if (card.getSymbol().equals(Parameters.JOKER_SYMBOL)){
+                return true;
+            }
+        }
+        return false;
     }
-    
-    
 }
