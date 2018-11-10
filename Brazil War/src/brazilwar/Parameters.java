@@ -20,4 +20,6 @@ public class Parameters {
     public static final String SYMBOLS[] = {"TRIANGULO", "QUADRADO", "CIRCULO"};
     
     public static final int LIMIT_CARDS_IN_HANDS = 5;
+    public static final int FIRST_TRADE = 4;
+    public static final int TRADE_ACCUMULATOR = 2;
 }

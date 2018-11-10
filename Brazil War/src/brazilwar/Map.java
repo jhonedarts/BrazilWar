@@ -6,6 +6,7 @@
 package brazilwar;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -27,8 +28,8 @@ public class Map {
         /** parte de sortear um distribuidor e o primeiro a jogar ser o proximo 
         * do ultimo que recebeu a carta foi resumido pra sortear a ordem dos
         * jogadores e sortear e setar o mapa
-        * 
         */
+        Collections.shuffle(this.states); 
     }
     
     

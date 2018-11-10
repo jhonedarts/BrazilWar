@@ -27,11 +27,11 @@ public class State {
     }
 
     public void addSoldiers(int soldiers) {
-        this.soldiersQuantity += soldiersQuantity;
+        this.soldiersQuantity += soldiers;
     }
     
     public void removeSoldiers(int soldiers) {
-        this.soldiersQuantity -= soldiersQuantity;
+        this.soldiersQuantity -= soldiers;
     }
 
     public String getArmyColor() {
