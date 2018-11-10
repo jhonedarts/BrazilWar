@@ -14,13 +14,11 @@ import java.util.Arrays;
  */
 public class Player {
     private ArrayList<Card> cards;//possivel uso de herança com Cards(pai) e StateCard e JokerCard (filhos)
-    private int statesAmount; // guarda a quantidades de posses, pode ser a lista de StatesId ou a lista de estados mesmo.
                                // o proposito é saber a quatidade pra dar a condição de vitoria
     private String color;
 
     public Player(int statesAmount, String color) {
         this.cards = new ArrayList<>();
-        this.statesAmount = statesAmount;
         this.color = color;
     }
     
@@ -65,15 +63,7 @@ public class Player {
     public void addCard(Card card) {
         this.cards.add(card);
     }
-
-    public int getStatesAmount() {
-        return statesAmount;
-    }
-
-    public void increasesStatesAmount() {
-        this.statesAmount++;
-    }
-
+    
     public String getColor() {
         return color;
     }

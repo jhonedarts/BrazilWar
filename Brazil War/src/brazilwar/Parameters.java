@@ -22,4 +22,5 @@ public class Parameters {
     public static final int LIMIT_CARDS_IN_HANDS = 5;
     public static final int FIRST_TRADE = 4;
     public static final int TRADE_ACCUMULATOR = 2;
+    public static final String COLOR[] = {"VERMELHO", "AZUL", "VERDE", "BRANCO", "PRETO", "AMARELO"};;
 }
