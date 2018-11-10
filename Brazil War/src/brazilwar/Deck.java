@@ -6,6 +6,7 @@
 package brazilwar;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -14,38 +15,15 @@ import java.util.Random;
  */
 public class Deck {
     
-    
-
     //o monte de cards embaralhados 
     private Random gerador = new Random();
     
     private ArrayList<Card> cards;
-    private int i = 0;
+    private int iteratorIndex = 0;
 
     public Deck() {
         //inicializar
         init();
-    }
-    
-    //singleton construtor
-    
-    public void sort(){
-        
-    }
-    
-    public Card nextCard(){
-        if (i==cards.size()){//quando o deck acabar, ele será resor
-            rand();
-        }
-        return cards.get(i);
-        
-    }
-
-    public void rand() {
-        ArrayList<Card> cardsAux = new ArrayList<>();
-        for (int aux = 0; aux < 0; aux--){
-            cardsAux.add(cards.get(gerador.nextInt(aux+1)));
-        }
     }
     
     private void init(){
@@ -62,5 +40,20 @@ public class Deck {
             
             i++;j++;
         }
+        // + 2 coringas
+        card = new Card(Parameters.JOKER_SYMBOL);
+        this.cards.add(card);
+        card = new Card(Parameters.JOKER_SYMBOL);
+        this.cards.add(card);
+        
+        Collections.shuffle(cards); 
+    }
+    
+    public Card nextCard(){
+        if (iteratorIndex == cards.size()){//quando o deck acabar, ele será embaralhado
+            Collections.shuffle(cards); 
+            iteratorIndex = 0; //reset
+        }
+        return cards.get(++iteratorIndex);
     }
 }

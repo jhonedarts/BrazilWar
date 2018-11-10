@@ -19,8 +19,8 @@ public class Battlefield {
     public Battlefield() {
     }
     
-    public int[] combat(State attacker, State defender){
-        int soldiersDefeat[] = {0, 0};
+    public int[] combat(State attacker, State defender){//deveria receber so os exercitos ao inves dos estados?
+        int soldiersDefeat[] = {0, 0}; //[attacker, defender]
         int redDices[] = {0, 0, 0}; //vetor com os valores de 3 dados
         int yellowDices[] = {0, 0, 0}; //inicializo com 0 pq é um valor fora do range
         
@@ -55,14 +55,15 @@ public class Battlefield {
         
         for (int i = 0; i < redDices.length; i++) {
             if (redDices[i] > yellowDices[i]){
-                soldiersDefeat[0]++;//yellow defeat
+                soldiersDefeat[1]++;//yellow defeat
             }
         }
-        soldiersDefeat[1] = 3 - soldiersDefeat[0];
+        soldiersDefeat[0] = 3 - soldiersDefeat[0];
         
-        defender.removeSoldiers(soldiersDefeat[0]);
-        attacker.removeSoldiers(soldiersDefeat[1]);
+        attacker.removeSoldiers(soldiersDefeat[0]);//soldados do atacante sao retirados do mapa
+        defender.removeSoldiers(soldiersDefeat[1]);//soldados do defensor sao retirados do mapa
         
+        //se a retirada dos soldados é feita aqui, essa função não precisa ter retorno
         return soldiersDefeat;
     }
 }

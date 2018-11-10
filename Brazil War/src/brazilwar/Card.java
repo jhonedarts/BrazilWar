@@ -17,6 +17,11 @@ public class Card {
         this.symbol = symbol;
         this.name = name;
     }
+
+    public Card(String symbol) {
+        this.symbol = symbol;
+        this.name = null;
+    }
     public String getSymbol() {
         return symbol;
     }

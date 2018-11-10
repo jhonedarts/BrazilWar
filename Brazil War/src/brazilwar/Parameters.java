@@ -15,5 +15,9 @@ public class Parameters {
         "MA", "MT", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO",
         "RR", "SC", "SP", "SE"};
     
+    public static final String JOKER_SYMBOL = "CORINGA";
+    
     public static final String SYMBOLS[] = {"TRIANGULO", "QUADRADO", "CIRCULO"};
+    
+    public static final int LIMIT_CARDS_IN_HANDS = 5;
 }
