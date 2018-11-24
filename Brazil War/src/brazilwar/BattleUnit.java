@@ -9,10 +9,10 @@ package brazilwar;
  *
  * @author darts
  */
-public class Soldier extends BattleUnit{
+public class BattleUnit {
 
-    public Soldier() {
+    public BattleUnit() {
     }
-    //nao usada
+    
     
 }

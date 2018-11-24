@@ -7,6 +7,7 @@ package brazilwar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  *
@@ -16,8 +17,15 @@ public class Player {
     private ArrayList<Card> cards;//possivel uso de herança com Cards(pai) e StateCard e JokerCard (filhos)
                                // o proposito é saber a quatidade pra dar a condição de vitoria
     private String color;
+    private ArrayList<BattleUnit> battleUnitToDistribute;
+    private HashMap<String,ArrayList<BattleUnit>> battleUnitToDistributeRegion;
 
     public Player(int statesAmount, String color) {
+        this.battleUnitToDistribute = new ArrayList<>();
+        this.battleUnitToDistributeRegion = new HashMap<>();
+        for(String key : Parameters.REGIONS){
+            this.battleUnitToDistributeRegion.put(key, new ArrayList<>());
+        }
         this.cards = new ArrayList<>();
         this.color = color;
     }
@@ -75,5 +83,13 @@ public class Player {
             }
         }
         return false;
+    }
+    
+    public void addBattleUnits(ArrayList<BattleUnit> units){
+        this.battleUnitToDistribute.addAll(units);
+    }
+    
+    public void addBattleUnitsPerRegion(String state, ArrayList<BattleUnit> units){
+        this.battleUnitToDistributeRegion.get(state).addAll(units);
     }
 }

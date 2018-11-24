@@ -7,12 +7,8 @@ package brazilwar;
 
 /**
  *
- * @author darts
+ * @author jhone
  */
-public class Soldier extends BattleUnit{
-
-    public Soldier() {
-    }
-    //nao usada
+public class ManagerBattleUnits {
     
 }

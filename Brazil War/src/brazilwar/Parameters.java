@@ -11,9 +11,18 @@ package brazilwar;
  */
 public class Parameters {
     
-    public static final String STATES[] = {"AC", "AL", "AP", "AM", "BA", "CE", "ES", "GO", 
-        "MA", "MT", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO",
-        "RR", "SC", "SP", "SE"};
+    public static final String NORTH[] = {"AC", "AP", "AM", "PA", "RO", "RR"};
+    public static final String NORTHEAST[] = {"AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE"};
+    public static final String MIDWEST[] = {"GO", "MT"};
+    public static final String SOUTHEAST[] = {"ES", "MG", "SP", "RJ"};
+    public static final String SOUTH[] = {"PR", "RS", "SC"};
+    public static final String STATES[] = {
+    /* NORTE*/      "AC", "AP", "AM", "PA", "RO", "RR",
+    /* NORDESTE*/   "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE",  
+    /* CENTRO-OESTE*/"GO", "MT", 
+    /* SUDESTE*/    "ES", "MG", "SP", "RJ",
+    /* SUL*/        "PR", "RS", "SC"};
+    public static final String REGIONS[] = {"Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"};
     
     public static final String JOKER_SYMBOL = "CORINGA";
     

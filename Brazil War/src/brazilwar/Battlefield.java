@@ -5,6 +5,7 @@
  */
 package brazilwar;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -19,51 +20,49 @@ public class Battlefield {
     public Battlefield() {
     }
     
-    public int[] combat(State attacker, State defender){//deveria receber so os exercitos ao inves dos estados?
-        int soldiersDefeat[] = {0, 0}; //[attacker, defender]
+    public int[] combat(ArrayList<BattleUnit> attacker, ArrayList<BattleUnit> defender){//deveria receber so os exercitos ao inves dos estados?
+        int battleUnitsDefeat[] = {0, 0}; //[attacker, defender]
         int redDices[] = {0, 0, 0}; //vetor com os valores de 3 dados
         int yellowDices[] = {0, 0, 0}; //inicializo com 0 pq é um valor fora do range
         
-        //o atacante tem direito ao 1º dado, para isso deve ter no minino 2 soldados
-        if (attacker.getArmyQuantity() > 1){
+        //validação de quantidade suficiente para atacar já foi feita em State.getBattleUnitsForCombat()
+        //o atacante tem direito ao 1º dado
+        if (attacker.size() == 1){
             redDices[0] = numberGenerator.nextInt(6)+1;
         }
-        //o atacante tem direito ao 2º dado, para isso deve ter no minino 3 soldados
-        if (attacker.getArmyQuantity() > 2){
+        //o atacante tem direito ao 2º dado
+        if (attacker.size() == 2){
             redDices[1] = numberGenerator.nextInt(6)+1;
         }
-        //o atacante tem direito ao 3º dado, para isso deve ter no minino 4 soldados
-        if (attacker.getArmyQuantity() > 3){
+        //o atacante tem direito ao 3º dado
+        if (attacker.size() == 3){
             redDices[2] = numberGenerator.nextInt(6)+1;
         }
         
-        //o defensor tem direito ao 1º dado, para isso deve ter no minino 1 soldado
-        if (attacker.getArmyQuantity() >= 1){
-            redDices[0] = numberGenerator.nextInt(6)+1;
+        //o defensor tem direito ao 1º dado
+        if (defender.size() == 1){
+            yellowDices[0] = numberGenerator.nextInt(6)+1;
         }
-        //o defensor tem direito ao 2º dado, para isso deve ter no minino 2 soldados
-        if (attacker.getArmyQuantity() >= 2){
-            redDices[1] = numberGenerator.nextInt(6)+1;
+        //o defensor tem direito ao 2º dados
+        if (defender.size() == 2){
+            yellowDices[1] = numberGenerator.nextInt(6)+1;
         }
-        //o defensor tem direito ao 3º dado, para isso deve ter no minino 3 soldados
-        if (attacker.getArmyQuantity() >= 3){
-            redDices[2] = numberGenerator.nextInt(6)+1;
+        //o defensor tem direito ao 3º dado
+        if (defender.size() == 3){
+            yellowDices[2] = numberGenerator.nextInt(6)+1;
         }
         
         Arrays.sort(redDices);
         Arrays.sort(yellowDices);
         
         for (int i = 0; i < redDices.length; i++) {
-            if (redDices[i] > yellowDices[i]){
-                soldiersDefeat[1]++;//yellow defeat
+            if (redDices[i] <= yellowDices[i]){
+                battleUnitsDefeat[0]++;//red defeat
+            } else {
+                battleUnitsDefeat[1]++;//yellow defeat
             }
         }
-        soldiersDefeat[0] = 3 - soldiersDefeat[0];
         
-        attacker.removeSoldiers(soldiersDefeat[0]);//soldados do atacante sao retirados do mapa
-        defender.removeSoldiers(soldiersDefeat[1]);//soldados do defensor sao retirados do mapa
-        
-        //se a retirada dos soldados é feita aqui, essa função não precisa ter retorno
-        return soldiersDefeat;
+        return battleUnitsDefeat;
     }
 }

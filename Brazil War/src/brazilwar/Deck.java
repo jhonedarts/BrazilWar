@@ -11,7 +11,7 @@ import java.util.Random;
 
 /**
  *
- * @author jhone
+ * @author darts
  */
 public class Deck {
     

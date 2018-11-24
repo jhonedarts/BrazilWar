@@ -5,41 +5,77 @@
  */
 package brazilwar;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author darts
  */
 public class State {
     
-    private int soldiersQuantity;
-    private String soldiersColor; //nessa logica o estado recebe uma marcação de que é o dono dele
+    private ArrayList<BattleUnit> battleUnits;
+    private String battleUnitsColor; //nessa logica o estado recebe uma marcação de que é o dono dele
                                 //seria melhor por o jogador pra ter uma lista de estados ou dos id dos estados?
     private String initials;
 
     public State(String initials) {
-        this.soldiersQuantity = 0;
-        this.soldiersColor = "none";
+        this.battleUnits = new ArrayList<>();
+        this.battleUnitsColor = "none";
         this.initials = initials;
     }
 
     public int getArmyQuantity() {
-        return soldiersQuantity;
+        return battleUnits.size();
     }
 
-    public void addSoldiers(int soldiers) {
-        this.soldiersQuantity += soldiers;
+    public void addBattleUnit(BattleUnit battleUnit) {
+        this.battleUnits.add(battleUnit);
     }
     
-    public void removeSoldiers(int soldiers) {
-        this.soldiersQuantity -= soldiers;
+    public void addBattleUnits(ArrayList<BattleUnit> battleUnits) {
+        this.battleUnits.addAll(battleUnits);
+    }
+    
+    public ArrayList<BattleUnit> getBattleUnitsForAttack(){
+        ArrayList<BattleUnit> aux = new ArrayList<>();
+        if (this.battleUnits.size() >= 4){
+            aux.add(this.battleUnits.get(0));
+            aux.add(this.battleUnits.get(1));
+            aux.add(this.battleUnits.get(2));
+        } else if (this.battleUnits.size() == 3){
+            aux.add(this.battleUnits.get(0));
+            aux.add(this.battleUnits.get(1));
+        } else if (this.battleUnits.size() == 2){
+            aux.add(this.battleUnits.get(0));
+        }
+        return aux;
+    }
+    
+    public ArrayList<BattleUnit> getBattleUnitsForDefense(){
+        ArrayList<BattleUnit> aux = new ArrayList<>();
+        if (this.battleUnits.size() >= 3){
+            aux.add(this.battleUnits.get(0));
+            aux.add(this.battleUnits.get(1));
+            aux.add(this.battleUnits.get(2));
+        } else if (this.battleUnits.size() == 2){
+            aux.add(this.battleUnits.get(0));
+            aux.add(this.battleUnits.get(1));
+        } else if (this.battleUnits.size() == 1){
+            aux.add(this.battleUnits.get(0));
+        }
+        return aux;
+    }
+    
+    public void removeBattleUnit(BattleUnit battleUnit) {
+        this.battleUnits.remove(battleUnit);
     }
 
     public String getArmyColor() {
-        return soldiersColor;
+        return battleUnitsColor;
     }
 
-    public void setArmyColor(String soldiersColor) {
-        this.soldiersColor = soldiersColor;
+    public void setArmyColor(String battleUnitsColor) {
+        this.battleUnitsColor = battleUnitsColor;
     }
 
     public String getInitials() {
