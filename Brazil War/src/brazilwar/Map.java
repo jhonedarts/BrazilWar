@@ -5,7 +5,6 @@
  */
 package brazilwar;
 
-import com.sun.corba.se.spi.protocol.InitialServerRequestDispatcher;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -18,6 +17,7 @@ public class Map {
     private HashMap<String, State> states;
 
     public Map() {
+        this.states = new HashMap<>();
         //inicializa com todos estados definidos em STATES 
         for (int i = 0; i < Parameters.STATES.length; i++) {
             State state = new State(Parameters.STATES[i]); //inicializa com a sigla
