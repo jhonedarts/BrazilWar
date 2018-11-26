@@ -6,6 +6,7 @@
 package brazilwar;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  *
@@ -17,9 +18,11 @@ public class State {
     private String battleUnitsColor; //nessa logica o estado recebe uma marcação de que é o dono dele
                                 //seria melhor por o jogador pra ter uma lista de estados ou dos id dos estados?
     private String initials;
+    private HashSet<String> frontiers;
 
     public State(String initials) {
         this.battleUnits = new ArrayList<>();
+        this.frontiers = new HashSet<>();
         this.battleUnitsColor = "none";
         this.initials = initials;
     }
@@ -82,5 +85,7 @@ public class State {
         return initials;
     }
    
-    
+    public boolean isMyfrontier(String key){
+        return false;
+    }
 }

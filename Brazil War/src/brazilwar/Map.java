@@ -57,17 +57,24 @@ public class Map {
     }
     
     /**
-     * valida se o player tem posse do estado
+     * retorna a cor do player tem posse do estado
      * @param initials é a sigla do estado
-     * @param color cor do player que diz ter posse do estado
-     * @return true se possuir a posse do estado
+     * @return color cor do player que tem posse do estado
      */
-    public boolean isMyState(String initials, String color){
-        State aux = this.states.get(initials);
-        if(aux != null){
-            if(aux.getArmyColor().equals(color)){
+    public String stateBattleUnitsColor(String initials){
+        return this.states.get(initials).getArmyColor();
+    }
+    
+    public String[] getFrontiers(String initials){
+        return Parameters.Frontiers(initials);
+    }
+    
+    public boolean hasFrontier(String stateA, String stateB){
+        String[] frontiersA = Parameters.Frontiers(stateA);
+        for (String state : frontiersA) {
+            if (state.equals(stateB)){
                 return true;
-            }
+            }           
         }
         return false;
     }
