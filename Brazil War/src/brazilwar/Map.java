@@ -52,6 +52,21 @@ public class Map {
         }
     }
     
+    /**
+     * lista todos os estados por sigla
+     * @return lista dos estados separados por virgula
+     */
+    public String listStatesToString(){
+        String aux = "", aux2 = "";
+        aux = aux.concat("ESTADO TROPAS COR\n");
+        for(int i=0; i < Parameters.STATES.length; i++){
+            State state = this.states.get(Parameters.STATES[i]);
+            aux2 = (state.getArmyQuantity()>10)? "0"+state.getArmyQuantity() : ""+state.getArmyQuantity();
+            aux = aux.concat("  "+Parameters.STATES[i]+"     "+aux2+"    "+state.getArmyColor()+"\n");
+        }
+        return aux;
+    }
+    
     public void putSoldier(String intialsState, ArrayList<BattleUnit> battleUnits){
         this.states.get(intialsState).addBattleUnits(battleUnits);
     }
