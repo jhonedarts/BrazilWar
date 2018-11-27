@@ -72,6 +72,15 @@ public class State {
     public void removeBattleUnit(BattleUnit battleUnit) {
         this.battleUnits.remove(battleUnit);
     }
+    
+    public BattleUnit popBattleUnit() {
+        if(this.battleUnits.size() < 1){
+            return null;
+        }
+        BattleUnit bu = this.battleUnits.get(0);
+        this.battleUnits.remove(0);
+        return bu;
+    }
 
     public String getArmyColor() {
         return battleUnitsColor;

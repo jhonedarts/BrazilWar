@@ -79,6 +79,19 @@ public class Map {
         return false;
     }
     /**
+     * Move tropas do estado A para o estado B
+     * @param stateA estado a perder tropas
+     * @param stateB estado a ganhar tropas
+     * @param quantity quantidade de tropas a serem movidas
+     */
+    public void moveBattleUnits(String stateA, String stateB, int quantity){
+        if(hasFrontier(stateA, stateB)){
+            for (int i = 0; i < quantity; i++) {
+                this.states.get(stateB).addBattleUnit(this.states.get(stateA).popBattleUnit());
+            }            
+        }
+    }
+    /**
      * [talvez isso não devesse estar aqui...]
      * Checa a condição de fim de jogo
      * @return verdadeiro se todos territorios pertencem a somente um jogador
@@ -102,7 +115,7 @@ public class Map {
         for (String key : Parameters.COLOR){
             counters.put(key, new ArrayList<>());
         }
-        
+        // trecho de codigo replicado................
         String playerColor = this.states.get(Parameters.NORTH[0]).getArmyColor();
         boolean regionHasOwner = true;
         
@@ -125,7 +138,7 @@ public class Map {
                 }
             }
         }
-        
+        //.............................................
         playerColor = this.states.get(Parameters.NORTHEAST[0]).getArmyColor();
         regionHasOwner = true;
         for (String state : Parameters.NORTHEAST){
