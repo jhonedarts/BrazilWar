@@ -17,7 +17,7 @@ public class Deck {
     
     //o monte de cards embaralhados 
     private Random gerador = new Random();
-    
+    private Parameters parameters = Parameters.getInstance();
     private ArrayList<Card> cards;
     private int iteratorIndex = 0;
 
@@ -31,12 +31,12 @@ public class Deck {
         Card card;
         int i = 0, j = 0;
         
-        while (i < Parameters.STATES.length) { //percorre todos os estados
+        while (i < parameters.getStatesTotal()) { //percorre todos os estados
             if(j >= Parameters.SYMBOLS.length){ //reseta o contador do simbolo
                 j = 0;
             }
             //cria um card com simbolo e estado
-            card = new Card(Parameters.SYMBOLS[j], Parameters.STATES[i]);
+            card = new Card(Parameters.SYMBOLS[j], parameters.getState(i));
             this.cards.add(card);
             
             i++;j++;

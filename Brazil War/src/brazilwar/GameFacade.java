@@ -36,16 +36,12 @@ public class GameFacade {
     public void startGame() {
         System.out.println("BrazilWar\n");
         
-        playersQuantitySelectGUI(); 
+        System.out.print("Digite a quantidade de jogadores: ");
+        playersQuantity = input.nextInt();
         map.shuffleMap(playersQuantity);
         mapShowGUI();
     }
-    
-    private void playersQuantitySelectGUI() {
-        System.out.print("Digite a quantidade de jogadores: ");
-        playersQuantity = input.nextInt();
-    }
-        
+            
     private void mapShowGUI() {
         System.out.println(this.map.listStatesToString());
     }

@@ -19,11 +19,12 @@ public class Player {
     private String color;
     private ArrayList<BattleUnit> battleUnitToDistribute;
     private HashMap<String,ArrayList<BattleUnit>> battleUnitToDistributeRegion;
-
+    private Parameters parameters = Parameters.getInstance();
+    
     public Player(int statesAmount, String color) {
         this.battleUnitToDistribute = new ArrayList<>();
         this.battleUnitToDistributeRegion = new HashMap<>();
-        for(String key : Parameters.REGIONS){
+        for(String key : parameters.getRegions()){
             this.battleUnitToDistributeRegion.put(key, new ArrayList<>());
         }
         this.cards = new ArrayList<>();

@@ -5,6 +5,8 @@
  */
 package brazilwar;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -12,29 +14,94 @@ import java.util.HashMap;
  * @author darts
  */
 public class Parameters {
+    private static Parameters instance;
+    private HashMap<String, String[]> regions;
+    private ArrayList<String> states;
     
-    public static final String NORTH[] = {"AC", "AP", "AM", "PA", "RO", "RR"};
-    public static final String NORTHEAST[] = {"AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE"};
-    public static final String MIDWEST[] = {"GO", "MT"};
-    public static final String SOUTHEAST[] = {"ES", "MG", "SP", "RJ"};
-    public static final String SOUTH[] = {"PR", "RS", "SC"};
-    public static final String STATES[] = {
-    /* NORTE*/      "AC", "AP", "AM", "PA", "RO", "RR",
-    /* NORDESTE*/   "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE",  
-    /* CENTRO-OESTE*/"GO", "MT", 
-    /* SUDESTE*/    "ES", "MG", "SP", "RJ",
-    /* SUL*/        "PR", "RS", "SC"};
-    public static final String REGIONS[] = {"Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"};
+    private String NORTH[] = {"AC", "AP", "AM", "PA", "RO", "RR"};
+    private String NORTHEAST[] = {"AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE"};
+    private String MIDWEST[] = {"GO", "MT"};
+    private String SOUTHEAST[] = {"ES", "MG", "SP", "RJ"};
+    private String SOUTH[] = {"PR", "RS", "SC"};
     
     public static final String JOKER_SYMBOL = "CORINGA";
     public static final String SYMBOLS[] = {"TRIANGULO", "QUADRADO", "CIRCULO"};
     public static final int LIMIT_CARDS_IN_HANDS = 5;
     public static final int FIRST_TRADE = 4;
     public static final int TRADE_ACCUMULATOR = 2;
-    public static final String COLOR[] = {"VERMELHO", "AZUL", "VERDE", "BRANCO", "PRETO", "AMARELO"};;
+    public static final String COLOR[] = {"VERMELHO", "AZUL", "VERDE", "BRANCO", "PRETO", "AMARELO"};
     
-    public static String[] Frontiers(String initials) {
-        HashMap<String, String[]> frontiers = new HashMap<>();
+    private HashMap<String, String[]> frontiers;
+    
+    private Parameters() {
+        this.initFrontiers();
+        this.initStatesByRegion();
+        this.initStates();//deve seguir initStatesByRegion()
+        
+        this.frontiers = new HashMap<>();
+    }
+    
+    public static Parameters getInstance(){
+        if (instance == null){
+            instance = new Parameters();
+        }
+        return instance;
+    }
+    
+    private void initStates() {
+        ArrayList<String> N = new ArrayList<String>(Arrays.asList(NORTH));
+        ArrayList<String> NE = new ArrayList<>(Arrays.asList(NORTHEAST));
+        ArrayList<String> MW = new ArrayList<>(Arrays.asList(MIDWEST));
+        ArrayList<String> SE = new ArrayList<>(Arrays.asList(SOUTHEAST));
+        ArrayList<String> S = new ArrayList<>(Arrays.asList(SOUTH));
+        
+        this.states = new ArrayList<>();
+        states.addAll(N);
+        states.addAll(NE);
+        states.addAll(MW);
+        states.addAll(SE);
+        states.addAll(S);
+    }
+    
+    public String[] getStates() {
+        return (String[]) this.states.toArray();
+    }
+    
+    public int getStatesTotal(){
+        return this.states.size();
+    }
+    
+    public String getState(int index){
+        return this.states.get(index);
+    }
+    
+    private void initStatesByRegion() {
+        this.regions = new HashMap<>();
+        
+        regions.put("NORTE", NORTH);
+        regions.put("NORDESTE", NORTHEAST);
+        regions.put("CENTRO-OESTE", MIDWEST);
+        regions.put("SUDESTE", SOUTHEAST);
+        regions.put("SUL", SOUTH);
+    }
+    
+    public String[] getRegions(){
+        ArrayList<String> regionsNames = new ArrayList<>();
+        for (String key : this.regions.keySet()){
+            regionsNames.add(key);
+        }
+        return (String[]) regionsNames.toArray();
+    }
+    
+    public String[] getStatesByRegion(String region){
+        return regions.get(region);
+    }
+    
+    public String[] getFrontiers(String initials) {
+        return this.frontiers.get(initials);
+    }
+    
+    private void initFrontiers() {        
         String AC[] = {"AM"};
         String AP[] = {"PA"};
         String PA[] = {"AM", "RR", "MT", "AP", "MA", "GO"};
@@ -59,30 +126,31 @@ public class Parameters {
         String RS[] = {"SC"};
         String SC[] = {"PR", "RS"};
         
-        frontiers.put("AC", AC);
-        frontiers.put("AP", AP);
-        frontiers.put("PA", PA);
-        frontiers.put("RO", RO);
-        frontiers.put("RR", RR);
-        frontiers.put("AL", AL);
-        frontiers.put("BA", BA);
-        frontiers.put("CE", CE);
-        frontiers.put("MA", MA);
-        frontiers.put("PB", PB);
-        frontiers.put("PE", PE);
-        frontiers.put("PI", PI);
-        frontiers.put("RN", RN);
-        frontiers.put("SE", SE);
-        frontiers.put("GO", GO);
-        frontiers.put("MT", MT);
-        frontiers.put("ES", ES);
-        frontiers.put("MG", MG);
-        frontiers.put("SP", SP);
-        frontiers.put("RJ", RJ);
-        frontiers.put("PR", PR);
-        frontiers.put("RS", RS);
-        frontiers.put("SC", SC);
+        this.frontiers = new HashMap<>();
         
-        return frontiers.get(initials);
+        this.frontiers.put("AC", AC);
+        this.frontiers.put("AP", AP);
+        this.frontiers.put("PA", PA);
+        this.frontiers.put("RO", RO);
+        this.frontiers.put("RR", RR);
+        this.frontiers.put("AL", AL);
+        this.frontiers.put("BA", BA);
+        this.frontiers.put("CE", CE);
+        this.frontiers.put("MA", MA);
+        this.frontiers.put("PB", PB);
+        this.frontiers.put("PE", PE);
+        this.frontiers.put("PI", PI);
+        this.frontiers.put("RN", RN);
+        this.frontiers.put("SE", SE);
+        this.frontiers.put("GO", GO);
+        this.frontiers.put("MT", MT);
+        this.frontiers.put("ES", ES);
+        this.frontiers.put("MG", MG);
+        this.frontiers.put("SP", SP);
+        this.frontiers.put("RJ", RJ);
+        this.frontiers.put("PR", PR);
+        this.frontiers.put("RS", RS);
+        this.frontiers.put("SC", SC);
     }
+    
 }

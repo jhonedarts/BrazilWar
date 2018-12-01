@@ -15,12 +15,12 @@ import java.util.HashMap;
  */
 public class Map {
     private HashMap<String, State> states;
-
+    private Parameters parameters = Parameters.getInstance();
     public Map() {
         this.states = new HashMap<>();
         //inicializa com todos estados definidos em STATES 
-        for (int i = 0; i < Parameters.STATES.length; i++) {
-            State state = new State(Parameters.STATES[i]); //inicializa com a sigla
+        for (int i = 0; i < parameters.getStatesTotal(); i++) {
+            State state = new State(parameters.getState(i)); //inicializa com a sigla
             this.states.put(state.getInitials(), state);
         }
         
@@ -59,10 +59,10 @@ public class Map {
     public String listStatesToString(){
         String aux = "", aux2 = "";
         aux = aux.concat("ESTADO TROPAS COR\n");
-        for(int i=0; i < Parameters.STATES.length; i++){
-            State state = this.states.get(Parameters.STATES[i]);
+        for(int i=0; i < parameters.getStatesTotal(); i++){
+            State state = this.states.get(parameters.getState(i));
             aux2 = (state.getArmyQuantity()>10)? "0"+state.getArmyQuantity() : ""+state.getArmyQuantity();
-            aux = aux.concat("  "+Parameters.STATES[i]+"     "+aux2+"    "+state.getArmyColor()+"\n");
+            aux = aux.concat("  "+parameters.getState(i)+"     "+aux2+"    "+state.getArmyColor()+"\n");
         }
         return aux;
     }
@@ -81,11 +81,11 @@ public class Map {
     }
     
     public String[] getFrontiers(String initials){
-        return Parameters.Frontiers(initials);
+        return parameters.getFrontiers(initials);
     }
     
     public boolean hasFrontier(String stateA, String stateB){
-        String[] frontiersA = Parameters.Frontiers(stateA);
+        String[] frontiersA = parameters.getFrontiers(stateA);
         for (String state : frontiersA) {
             if (state.equals(stateB)){
                 return true;
@@ -127,111 +127,36 @@ public class Map {
     //conhece ArrayList<Player>, isso pode ser um problema
     public void generateBattleUnitsPerRound(ArrayList<Player> players){
         HashMap<String, ArrayList<BattleUnit>> counters = new HashMap<>();
+        String playerColor;
+        String[] statesNames;
+        boolean regionHasOwner;
+        
         for (String key : Parameters.COLOR){
             counters.put(key, new ArrayList<>());
         }
         // trecho de codigo replicado................
-        String playerColor = this.states.get(Parameters.NORTH[0]).getArmyColor();
-        boolean regionHasOwner = true;
-        
-        String color = null;
-        for (String state : Parameters.NORTH){
-            color = this.states.get(state).getArmyColor();
-            counters.get(color).add(new BattleUnit());
-            if(!playerColor.equals(color)){
-                regionHasOwner = false;
-            }
-        }
-        if (regionHasOwner){
-            ArrayList<BattleUnit> units = new ArrayList<>();
-            units.add(new BattleUnit());
-            units.add(new BattleUnit());
-            units.add(new BattleUnit());
-            for (Player player : players){
-                if(color.equals(player.getColor())){
-                    player.addBattleUnitsPerRegion(Parameters.REGIONS[0], units);
+        for (String region : parameters.getRegions()){
+            statesNames = parameters.getStatesByRegion(region);
+            playerColor = this.states.get(statesNames[0]).getArmyColor();
+            regionHasOwner = true;
+
+            String color = null;
+            for (String state : statesNames){
+                color = this.states.get(state).getArmyColor();
+                counters.get(color).add(new BattleUnit());
+                if(!playerColor.equals(color)){
+                    regionHasOwner = false;
                 }
             }
-        }
-        //.............................................
-        playerColor = this.states.get(Parameters.NORTHEAST[0]).getArmyColor();
-        regionHasOwner = true;
-        for (String state : Parameters.NORTHEAST){
-            color = this.states.get(state).getArmyColor();
-            counters.get(color).add(new BattleUnit());
-            if(!playerColor.equals(color)){
-                regionHasOwner = false;
-            }
-        }
-        if (regionHasOwner){
-            ArrayList<BattleUnit> units = new ArrayList<>();
-            units.add(new BattleUnit());
-            units.add(new BattleUnit());
-            units.add(new BattleUnit());
-            for (Player player : players){
-                if(color.equals(player.getColor())){
-                    player.addBattleUnitsPerRegion(Parameters.REGIONS[0], units);
-                }
-            }
-        }
-        
-        playerColor = this.states.get(Parameters.MIDWEST[0]).getArmyColor();
-        regionHasOwner = true;
-        for (String state : Parameters.MIDWEST){
-            color = this.states.get(state).getArmyColor();
-            counters.get(color).add(new BattleUnit());
-            if(!playerColor.equals(color)){
-                regionHasOwner = false;
-            }
-        }
-        if (regionHasOwner){
-            ArrayList<BattleUnit> units = new ArrayList<>();
-            units.add(new BattleUnit());
-            units.add(new BattleUnit());
-            for (Player player : players){
-                if(color.equals(player.getColor())){
-                    player.addBattleUnitsPerRegion(Parameters.REGIONS[0], units);
-                }
-            }
-        }
-        
-        playerColor = this.states.get(Parameters.SOUTHEAST[0]).getArmyColor();
-        regionHasOwner = true;
-        
-        for (String state : Parameters.SOUTHEAST){
-            color = this.states.get(state).getArmyColor();
-            counters.get(color).add(new BattleUnit());
-            if(!playerColor.equals(color)){
-                regionHasOwner = false;
-            }
-        }
-        if (regionHasOwner){
-            ArrayList<BattleUnit> units = new ArrayList<>();
-            units.add(new BattleUnit());
-            units.add(new BattleUnit());
-            for (Player player : players){
-                if(color.equals(player.getColor())){
-                    player.addBattleUnitsPerRegion(Parameters.REGIONS[0], units);
-                }
-            }
-        }
-        
-        playerColor = this.states.get(Parameters.SOUTH[0]).getArmyColor();
-        regionHasOwner = true;
-        for (String state : Parameters.SOUTH){
-            color = this.states.get(state).getArmyColor();
-            counters.get(color).add(new BattleUnit());
-            if(!playerColor.equals(color)){
-                regionHasOwner = false;
-            }
-        }
-        if (regionHasOwner){
-            ArrayList<BattleUnit> units = new ArrayList<>();
-            units.add(new BattleUnit());
-            units.add(new BattleUnit());
-            for (Player player : players){
-                if(color.equals(player.getColor())){
-                    player.addBattleUnitsPerRegion(Parameters.REGIONS[0], units);
+            if (regionHasOwner){
+                ArrayList<BattleUnit> units = new ArrayList<>();
+                units.add(new BattleUnit());
+                units.add(new BattleUnit());
+                units.add(new BattleUnit());
+                for (Player player : players){
+                    if(color.equals(player.getColor())){
+                        player.addBattleUnitsPerRegion(region, units);
+                    }
                 }
             }
         }
