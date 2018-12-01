@@ -34,7 +34,7 @@ public class Map {
     * representa o verde, se o vlaor for 0, não temos o jogador verde, 1 temos.
      * @param players correspondente a quatidade de jogadores
     */
-    public void shuffleMap(int players){
+    public void shuffleMap(ArrayList<Player> players){
         //rodeia os estados
         ArrayList<State> statesShuffle = new ArrayList<>();
         statesShuffle.addAll(this.states.values());
@@ -43,28 +43,13 @@ public class Map {
         //distribui entre os presentes
         int j = 0;
         for (State state : statesShuffle){
-            if (j == players){
+            if (j == players.size()){
                 j = 0;
             }
             state.addBattleUnit(new Soldier());
-            state.setArmyColor(Parameters.COLOR[j]);
+            state.setArmyColor(players.get(j).getColor());
             j++;
         }
-    }
-    
-    /**
-     * lista todos os estados por sigla
-     * @return lista dos estados separados por virgula
-     */
-    public String listStatesToString(){
-        String aux = "", aux2 = "";
-        aux = aux.concat("ESTADO TROPAS COR\n");
-        for(int i=0; i < parameters.getStatesTotal(); i++){
-            State state = this.states.get(parameters.getState(i));
-            aux2 = (state.getArmyQuantity()>10)? "0"+state.getArmyQuantity() : ""+state.getArmyQuantity();
-            aux = aux.concat("  "+parameters.getState(i)+"     "+aux2+"    "+state.getArmyColor()+"\n");
-        }
-        return aux;
     }
     
     public void putSoldier(String intialsState, ArrayList<BattleUnit> battleUnits){
@@ -76,8 +61,12 @@ public class Map {
      * @param initials é a sigla do estado
      * @return color cor do player que tem posse do estado
      */
-    public String stateBattleUnitsColor(String initials){
+    public String getStateBattleUnitsColor(String initials){
         return this.states.get(initials).getArmyColor();
+    }
+    
+    public int getStateBattleUnitsQuantity(String initials){
+        return this.states.get(initials).getArmyQuantity();
     }
     
     public String[] getFrontiers(String initials){
@@ -131,8 +120,8 @@ public class Map {
         String[] statesNames;
         boolean regionHasOwner;
         
-        for (String key : Parameters.COLOR){
-            counters.put(key, new ArrayList<>());
+        for (Player player : players){
+            counters.put(player.getColor(), new ArrayList<>());
         }
         // trecho de codigo replicado................
         for (String region : parameters.getRegions()){
@@ -161,7 +150,8 @@ public class Map {
             }
         }
         
-        for (String key : Parameters.COLOR){
+        for (Player player : players){
+            String key = player.getColor();
             if (counters.get(key) == null){
                 continue;
             }

@@ -21,7 +21,7 @@ public class Player {
     private HashMap<String,ArrayList<BattleUnit>> battleUnitToDistributeRegion;
     private Parameters parameters = Parameters.getInstance();
     
-    public Player(int statesAmount, String color) {
+    public Player(String color) {
         this.battleUnitToDistribute = new ArrayList<>();
         this.battleUnitToDistributeRegion = new HashMap<>();
         for(String key : parameters.getRegions()){

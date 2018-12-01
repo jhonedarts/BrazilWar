@@ -29,7 +29,6 @@ public class Parameters {
     public static final int LIMIT_CARDS_IN_HANDS = 5;
     public static final int FIRST_TRADE = 4;
     public static final int TRADE_ACCUMULATOR = 2;
-    public static final String COLOR[] = {"VERMELHO", "AZUL", "VERDE", "BRANCO", "PRETO", "AMARELO"};
     
     private HashMap<String, String[]> frontiers;
     
@@ -90,7 +89,7 @@ public class Parameters {
         for (String key : this.regions.keySet()){
             regionsNames.add(key);
         }
-        return (String[]) regionsNames.toArray();
+        return regionsNames.toArray(new String[regionsNames.size()]);
     }
     
     public String[] getStatesByRegion(String region){
