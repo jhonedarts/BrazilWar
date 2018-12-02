@@ -38,6 +38,11 @@ public class State {
     public void addBattleUnits(ArrayList<BattleUnit> battleUnits) {
         this.battleUnits.addAll(battleUnits);
     }
+    public void addSoldiers(int qtt) {
+        for (int i = 0; i < qtt; i++) {
+            this.battleUnits.add(new Soldier());
+        }
+    }
     
     public ArrayList<BattleUnit> getBattleUnitsForAttack(){
         ArrayList<BattleUnit> aux = new ArrayList<>();

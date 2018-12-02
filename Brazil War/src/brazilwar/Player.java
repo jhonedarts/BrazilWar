@@ -63,6 +63,12 @@ public class Player {
     
     public void removeCard(Card card) {
         this.cards.remove(card);
+    } 
+    
+    public void removeCards(ArrayList<Card> cards) {
+        for(Card card : cards){
+            this.cards.remove(card);
+        }
     }    
     
     public boolean canAddCard() {
@@ -71,6 +77,14 @@ public class Player {
 
     public void addCard(Card card) {
         this.cards.add(card);
+    }
+    
+    public Card getCard(int index){
+        return this.cards.get(index);
+    }
+    
+    public int getCardsQtt(){
+        return this.cards.size();
     }
     
     public String getColor() {
@@ -90,7 +104,43 @@ public class Player {
         this.battleUnitToDistribute.addAll(units);
     }
     
-    public void addBattleUnitsPerRegion(String state, ArrayList<BattleUnit> units){
-        this.battleUnitToDistributeRegion.get(state).addAll(units);
+    public void addBattleUnitsByRegion(String region, ArrayList<BattleUnit> units){
+        this.battleUnitToDistributeRegion.get(region).addAll(units);
+    }
+    
+    public void removeSoldiers(int units){
+        for (int i = 0; i < units; i++) {
+            this.battleUnitToDistribute.remove(0);
+        }
+    }
+    
+    public void removeSoldiersByRegion(String region, int units){
+        for (int i = 0; i < units; i++) {
+            this.battleUnitToDistributeRegion.get(region).remove(0);
+        }
+    }
+    
+    public boolean hasBattleUnitsByRegion(String region){
+        return this.battleUnitToDistributeRegion.get(region).size() > 0;
+    }
+    
+    public void removeBattleUnitsByRegion(String region, ArrayList<BattleUnit> units){
+        this.battleUnitToDistributeRegion.get(region).addAll(units);
+    }
+
+    public int getBattleUnitsQtt() {
+        return this.battleUnitToDistribute.size();
+    }
+    
+    public int getBattleUnitsByRegionQtt(String region) {
+        return this.battleUnitToDistributeRegion.get(region).size();
+    }
+    
+    public int getBattleUnitsQttTotal() {
+        int units = 0;
+        for(String region : parameters.getRegions()){
+            units += battleUnitToDistributeRegion.get(region).size();
+        }
+        return this.battleUnitToDistribute.size() + units;
     }
 }

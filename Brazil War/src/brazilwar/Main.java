@@ -16,7 +16,9 @@ public class Main {
      */
     public static void main(String[] args) {
         // Onde a mãe chora e o filho não vê
-        new GameFacade().startGame();
+        GameFacade war = new GameFacade();
+        war.startGameByPass();
+        war.firstRound();
     }
     
 }

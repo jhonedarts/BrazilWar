@@ -28,13 +28,17 @@ public class Trader {
     }
     
     //recebe as cartas de troca e retorna a quantidade de soldados a serem recebidos
-    public int getTrade(ArrayList<Card> cards){
-        int soldiers = 0;
+    public ArrayList<BattleUnit> getTrade(ArrayList<Card> cards){
+        int qtt = 0;
         if (isValidTrade(cards)){
-            soldiers = Parameters.FIRST_TRADE + Parameters.TRADE_ACCUMULATOR*count;
+            qtt = Parameters.FIRST_TRADE + Parameters.TRADE_ACCUMULATOR*count;
             count++;            
         }
-        return soldiers;
+        ArrayList<BattleUnit> units = new ArrayList<>();
+        for (int i = 0; i < qtt; i++) {
+            units.add(new BattleUnit());
+        }
+        return units;
     }
     
     //checa se as cartas recebidas são uma troca valida

@@ -96,6 +96,21 @@ public class Parameters {
         return regions.get(region);
     }
     
+    public String getRegionByState(String state){
+        for(String region : regions.keySet()){
+            for(String st : regions.get(region)){
+                if(st.equals(state)){
+                    return region;
+                }
+            }
+        }
+        return null;
+    }
+    
+    public int getRegionsTotal(){
+        return this.regions.size();
+    }
+    
     public String[] getFrontiers(String initials) {
         return this.frontiers.get(initials);
     }

@@ -52,8 +52,12 @@ public class Map {
         }
     }
     
-    public void putSoldier(String intialsState, ArrayList<BattleUnit> battleUnits){
+    public void addBattleUnits(String intialsState, ArrayList<BattleUnit> battleUnits){
         this.states.get(intialsState).addBattleUnits(battleUnits);
+    }
+    
+    public void addSoldiers(String intialsState, int soldiersQtt){
+        this.states.get(intialsState).addSoldiers(soldiersQtt);
     }
     
     /**
@@ -144,7 +148,7 @@ public class Map {
                 units.add(new BattleUnit());
                 for (Player player : players){
                     if(color.equals(player.getColor())){
-                        player.addBattleUnitsPerRegion(region, units);
+                        player.addBattleUnitsByRegion(region, units);
                     }
                 }
             }
