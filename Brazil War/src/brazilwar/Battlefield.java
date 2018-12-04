@@ -34,11 +34,11 @@ public class Battlefield {
         
         //validação de quantidade suficiente para atacar já foi feita em State.getBattleUnitsForCombat()
         //o atacante tem direito ao 1º dado
-        if (attacker == 1){
+        if (attacker >= 1){
             redDices[0] = numberGenerator.nextInt(6)+1;
         }
         //o atacante tem direito ao 2º dado
-        if (attacker == 2){
+        if (attacker >= 2){
             redDices[1] = numberGenerator.nextInt(6)+1;
         }
         //o atacante tem direito ao 3º dado
@@ -47,11 +47,11 @@ public class Battlefield {
         }
         
         //o defensor tem direito ao 1º dado
-        if (defender == 1){
+        if (defender >= 1){
             yellowDices[0] = numberGenerator.nextInt(6)+1;
         }
         //o defensor tem direito ao 2º dados
-        if (defender == 2){
+        if (defender >= 2){
             yellowDices[1] = numberGenerator.nextInt(6)+1;
         }
         //o defensor tem direito ao 3º dado
@@ -63,10 +63,12 @@ public class Battlefield {
         Arrays.sort(yellowDices);
         
         for (int i = 0; i < redDices.length; i++) {
-            if (redDices[i] <= yellowDices[i]){
-                battleUnitsDefeat[0]++;//red defeat
-            } else {
-                battleUnitsDefeat[1]++;//yellow defeat
+            if(redDices[i] != 0 && yellowDices[i] != 0){
+                if (redDices[i] <= yellowDices[i]){
+                    battleUnitsDefeat[0]++;//red defeat
+                } else {
+                    battleUnitsDefeat[1]++;//yellow defeat
+                }
             }
         }
         

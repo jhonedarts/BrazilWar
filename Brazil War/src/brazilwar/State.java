@@ -98,8 +98,12 @@ public class State {
     public String getInitials() {
         return initials;
     }
-   
-    public boolean isMyfrontier(String key){
-        return false;
+
+    public void removeBattleUnits(int qtt) {
+        if(this.battleUnits.size() >= qtt){
+            for (int i = 0; i < qtt; i++) {
+                this.battleUnits.remove(0);
+            }       
+        }
     }
 }

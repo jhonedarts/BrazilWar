@@ -33,11 +33,9 @@ public class Parameters {
     private HashMap<String, String[]> frontiers;
     
     private Parameters() {
-        this.initFrontiers();
-        this.initStatesByRegion();
-        this.initStates();//deve seguir initStatesByRegion()
-        
-        this.frontiers = new HashMap<>();
+        initFrontiers();
+        initStatesByRegion();
+        initStates();//deve seguir initStatesByRegion()
     }
     
     public static Parameters getInstance(){

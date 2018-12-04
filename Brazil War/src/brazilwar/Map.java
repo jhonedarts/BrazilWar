@@ -62,11 +62,30 @@ public class Map {
     
     /**
      * retorna a cor do player tem posse do estado
-     * @param initials é a sigla do estado
+     * @param state é a sigla do estado
      * @return color cor do player que tem posse do estado
      */
-    public String getStateBattleUnitsColor(String initials){
-        return this.states.get(initials).getArmyColor();
+    public String getStateBattleUnitsColor(String state){
+        if(this.states.get(state) != null)
+            return this.states.get(state).getArmyColor();
+        else
+            return null;
+    }
+    
+    public int getSoldiersForAttack(String state){
+        return this.states.get(state).getBattleUnitsForAttack().size();
+    }
+    
+    public int getSoldiersForDefense(String state){
+        return this.states.get(state).getBattleUnitsForDefense().size();
+    }
+    
+    public ArrayList<BattleUnit> getBattleUnitsForAttack(String state){
+        return this.states.get(state).getBattleUnitsForAttack();
+    }
+    
+    public ArrayList<BattleUnit> getBattleUnitsForDefense(String state){
+        return this.states.get(state).getBattleUnitsForDefense();
     }
     
     public int getStateBattleUnitsQuantity(String initials){
@@ -79,6 +98,8 @@ public class Map {
     
     public boolean hasFrontier(String stateA, String stateB){
         String[] frontiersA = parameters.getFrontiers(stateA);
+        if(frontiersA == null)
+            return false;
         for (String state : frontiersA) {
             if (state.equals(stateB)){
                 return true;
@@ -96,8 +117,13 @@ public class Map {
         if(hasFrontier(stateA, stateB)){
             for (int i = 0; i < quantity; i++) {
                 this.states.get(stateB).addBattleUnit(this.states.get(stateA).popBattleUnit());
-            }            
+            }
+            this.states.get(stateB).setArmyColor(this.states.get(stateA).getArmyColor());
         }
+    }
+    
+    public void removeBattleUnits(String state, int qtt){
+        this.states.get(state).removeBattleUnits(qtt);
     }
     /**
      * [talvez isso não devesse estar aqui...]
