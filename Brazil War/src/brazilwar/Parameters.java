@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 /**
- *
+ * classe que contem os parametros do jogo
  * @author darts
  */
 public class Parameters {
@@ -60,18 +60,34 @@ public class Parameters {
         states.addAll(S);
     }
     
+    /**
+     * 
+     * @return a colecao de siglas de todos estados
+     */
     public String[] getStates() {
         return (String[]) this.states.toArray();
     }
     
+    /**
+     * 
+     * @return quantidade total de estados
+     */
     public int getStatesTotal(){
         return this.states.size();
     }
     
+    /**
+     * retorna um estado a partir da possicao na colecao
+     * @param index indice
+     * @return sigla do estado
+     */
     public String getState(int index){
         return this.states.get(index);
     }
     
+    /**
+     * inicializa as regioes
+     */
     private void initStatesByRegion() {
         this.regions = new HashMap<>();
         
@@ -82,6 +98,10 @@ public class Parameters {
         regions.put("SUL", SOUTH);
     }
     
+    /**
+     * 
+     * @return nomes das regioes
+     */
     public String[] getRegions(){
         ArrayList<String> regionsNames = new ArrayList<>();
         for (String key : this.regions.keySet()){
@@ -90,10 +110,20 @@ public class Parameters {
         return regionsNames.toArray(new String[regionsNames.size()]);
     }
     
+    /**
+     * 
+     * @param region regiao
+     * @return estados da regiao
+     */
     public String[] getStatesByRegion(String region){
         return regions.get(region);
     }
     
+    /**
+     * 
+     * @param state estado (sigla)
+     * @return retorna a regiao a qual o estado pertence
+     */
     public String getRegionByState(String state){
         for(String region : regions.keySet()){
             for(String st : regions.get(region)){
@@ -105,14 +135,26 @@ public class Parameters {
         return null;
     }
     
+    /**
+     * 
+     * @return quantidade total de regioes
+     */
     public int getRegionsTotal(){
         return this.regions.size();
     }
     
+    /**
+     * retorna os estados que fazem fronteiras com o estado informado
+     * @param initials sigla do estado
+     * @return colecao de siglas de estados
+     */
     public String[] getFrontiers(String initials) {
         return this.frontiers.get(initials);
     }
     
+    /**
+     * inicializa os estados por regiao
+     */
     private void initFrontiers() {        
         String AC[] = {"AM"};
         String AP[] = {"PA"};

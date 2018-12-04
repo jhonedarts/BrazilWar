@@ -22,6 +22,9 @@ public class GameFacade {
     private ArrayList<Player> players;
     private boolean tips = true;
     
+    /**
+     * inicializa os componentes principais do jogo war 1
+     */
     public GameFacade() {
         System.out.println("Carregando e configurando jogo...");
         input = new Scanner(System.in);
@@ -50,7 +53,7 @@ public class GameFacade {
     }
     
     /**
-     * starta o jogo pra 4 players, pra testes
+     * starta o jogo pra 2 players, para testes
      */
     public void startGameByPass() {
         System.out.println("BrazilWar\n");
@@ -69,6 +72,7 @@ public class GameFacade {
     
     /**
      * Solicita ao usuario a definição das cores dos players
+     * @param playersQuatity quantidade de jogadores
      */
     private void selectColor(int playersQuatity){
         System.out.print("\nSeleção de cores\n");
@@ -81,7 +85,8 @@ public class GameFacade {
     }
     
     /**
-     * lista todos os estados por sigla, quatidade de tropas e cor
+     * lista todos os estados por sigla, quatidade de tropas 
+     * e cor agrupados por região
      */
     private void showMap() {
         int armyQuantity;
@@ -100,6 +105,9 @@ public class GameFacade {
         System.out.println(aux+"\n");  
     }
     
+    /**
+     * Primeira rodada, so distribuição de tropas
+     */
     public void firstRound(){
         map.generateBattleUnitsPerRound(players);
         for (Player player : players) { 
@@ -107,6 +115,10 @@ public class GameFacade {
         }
     }
     
+    /**
+     * Rodada com trocas de cartas, distribuição de tropas, 
+     * e escolhas de ataque, remanejar tropas e ver as cartas
+     */
     public void round(){
         map.generateBattleUnitsPerRound(players);
         for (Player player : players) { 
@@ -141,6 +153,12 @@ public class GameFacade {
         }
     }
     
+    /**
+     * Verica se @player tem a possibilidade de realizar uma troca
+     * Se sim, pergunta se deseja trocar e quais cartas
+     * Se as cartas informadas validarem uma troca, player recebe as tropas
+     * @param player
+     */
     private void trade(Player player){
         System.out.println("\nJogador "+player.getColor());
         String comand;
@@ -177,6 +195,11 @@ public class GameFacade {
         }
     }
     
+    /**
+     * Chama os metodos pra gerar as tropas por rodada
+     * Player decide onde coloca-las 
+     * @param player
+     */
     private void distribute(Player player){
         System.out.println("Você tem "+player.getBattleUnitsQttTotal()+" exércitos para distribuir:");
         for(String region : parameters.getRegions()){
@@ -222,6 +245,11 @@ public class GameFacade {
         showMap();
     }
     
+    /**
+     * Pergunta qual as coordenadas do ataque, valida a posse e fronteira
+     * Chama o @battlefield para realizar o combate
+     * @param player
+     */
     private void attack(Player player){
         System.out.println("\nJogador "+player.getColor());
         String answer ="s";
@@ -275,6 +303,10 @@ public class GameFacade {
         }
     }
     
+    /**
+     * Permite a movimentação das tropas entre os estados pertencentes ao @player
+     * @param player
+     */
     private void reallocate(Player player) {
         System.out.println("\nJogador "+player.getColor());
         String answer = "s";
@@ -302,6 +334,10 @@ public class GameFacade {
         }
     }
     
+    /**
+     * Printa as cartas do @player
+     * @param player
+     */
     private void showCards(Player player){
         System.out.println("");
         for (int i = 0; i < player.getCardsQtt(); i++) {

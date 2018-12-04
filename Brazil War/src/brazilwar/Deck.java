@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.Random;
 
 /**
- *
+ * Representa o monte de cartas
  * @author darts
  */
 public class Deck {
@@ -27,6 +27,9 @@ public class Deck {
         init();
     }
     
+    /**
+     * intancia as cartas definidas pelo estados
+     */
     private void init(){
         Card card;
         int i = 0, j = 0;
@@ -50,6 +53,10 @@ public class Deck {
         Collections.shuffle(cards); 
     }
     
+    /**
+     * quando todas cartas sao "removidas" elas voltam ao deck reembaralhadas
+     * @return Uma carta, sendo esta "removida" do deck
+     */
     public Card nextCard(){
         if (iteratorIndex == cards.size()){//quando o deck acabar, ele será embaralhado
             Collections.shuffle(cards); 

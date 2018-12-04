@@ -52,10 +52,20 @@ public class Map {
         }
     }
     
+    /**
+     * Adiciona Unidades de batalha ao estado
+     * @param intialsState sigla do estado
+     * @param battleUnits lista de unidades de batalha
+     */
     public void addBattleUnits(String intialsState, ArrayList<BattleUnit> battleUnits){
         this.states.get(intialsState).addBattleUnits(battleUnits);
     }
-    
+
+    /**
+     * Adiciona soldados ao estado
+     * @param intialsState sigla do estado
+     * @param soldiersQtt quantidade de soldados
+     */
     public void addSoldiers(String intialsState, int soldiersQtt){
         this.states.get(intialsState).addSoldiers(soldiersQtt);
     }
@@ -72,30 +82,66 @@ public class Map {
             return null;
     }
     
+    /**
+     * Retorna de 0-3 soldados, respeitando as condições de permanecer um soldado no territorio
+     * @param state sigla do estado
+     * @return quantidade de soldados
+     */
     public int getSoldiersForAttack(String state){
         return this.states.get(state).getBattleUnitsForAttack().size();
     }
     
+    /**
+     * Retorna de 0-3 soldados
+     * @param state sigla do estado
+     * @return quantidade de soldados
+     */
     public int getSoldiersForDefense(String state){
         return this.states.get(state).getBattleUnitsForDefense().size();
     }
     
+    /**
+     * Retorna de 0-3 unidades de batalha, respeitando as condições de permanecer um soldado no territorio
+     * @param state sigla do estado
+     * @return quantidade de unidades de batalha
+     */
     public ArrayList<BattleUnit> getBattleUnitsForAttack(String state){
         return this.states.get(state).getBattleUnitsForAttack();
     }
     
+    /**
+     * Retorna de 0-3 unidades de batalha
+     * @param state sigla do estado
+     * @return quantidade de unidades de batalha
+     */
     public ArrayList<BattleUnit> getBattleUnitsForDefense(String state){
         return this.states.get(state).getBattleUnitsForDefense();
     }
     
+    /**
+     * retorna a quantidade de unidades de batalha do estado
+     * @param initials sigla do estado
+     * @return quantidade de unidades de batalha
+     */
     public int getStateBattleUnitsQuantity(String initials){
         return this.states.get(initials).getArmyQuantity();
     }
     
+    /**
+     * 
+     * @param initials sigla do estado
+     * @return siglas dos estados que fazem divisa com o estado informado
+     */
     public String[] getFrontiers(String initials){
         return parameters.getFrontiers(initials);
     }
     
+    /**
+     * Verifica se há uma fronteira
+     * @param stateA 
+     * @param stateB
+     * @return true se A possui fronteira com B
+     */
     public boolean hasFrontier(String stateA, String stateB){
         String[] frontiersA = parameters.getFrontiers(stateA);
         if(frontiersA == null)
@@ -143,7 +189,12 @@ public class Map {
         return true;
     }
     
-    //conhece ArrayList<Player>, isso pode ser um problema
+    /**
+     * logica de geração de tropas por rodada, considera as 
+     * posses dos estados e das regiões.
+     * as tropas são adicionadas nos players para que possam distribuir
+     * @param players jogadores
+     */
     public void generateBattleUnitsPerRound(ArrayList<Player> players){
         HashMap<String, ArrayList<BattleUnit>> counters = new HashMap<>();
         String playerColor;

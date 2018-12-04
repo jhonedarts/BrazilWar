@@ -6,7 +6,7 @@
 package brazilwar;
 
 /**
- *
+ * Battle Unit foi criada para promover novos tipos de unidades, inicialmente, só existe soldados
  * @author darts
  */
 public class BattleUnit {

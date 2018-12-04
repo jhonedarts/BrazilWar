@@ -6,13 +6,12 @@
 package brazilwar;
 
 /**
- *
+ * representa a unidade basica
  * @author darts
  */
 public class Soldier extends BattleUnit{
 
     public Soldier() {
     }
-    //nao usada
     
 }

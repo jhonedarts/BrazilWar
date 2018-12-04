@@ -26,8 +26,12 @@ public class Trader {
         }
         return instance;
     }
-    
-    //recebe as cartas de troca e retorna a quantidade de soldados a serem recebidos
+        
+    /**
+     * realiza a troca das cartas por tropas
+     * @param cards colecao de cartas
+     * @return quantidade de tropas a serem recebidas
+     */
     public ArrayList<BattleUnit> getTrade(ArrayList<Card> cards){
         int qtt = 0;
         if (isValidTrade(cards)){
@@ -41,7 +45,11 @@ public class Trader {
         return units;
     }
     
-    //checa se as cartas recebidas são uma troca valida
+    /**
+     * checa se as cartas recebidas são uma troca valida
+     * @param cards
+     * @return
+     */
     public boolean isValidTrade(ArrayList<Card> cards){
         return canTradeCards(cards) && cards.size() == Parameters.SYMBOLS.length;
     }
@@ -77,7 +85,11 @@ public class Trader {
         return true;
     }
     
-    //checa se existe um coringa entre as cartas
+    /**
+     * checa se existe um coringa entre as cartas
+     * @param cards
+     * @return
+     */
     private boolean hasJoker(ArrayList<Card> cards){
         for(Card card : cards){
             if (card.getSymbol().equals(Parameters.JOKER_SYMBOL)){
