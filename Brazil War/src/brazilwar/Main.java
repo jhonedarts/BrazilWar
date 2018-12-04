@@ -18,7 +18,8 @@ public class Main {
         // Onde a mãe chora e o filho não vê
         GameFacade war = new GameFacade();
         
-        war.startGameByPass();
+        war.startGame();
+//        war.startGameByPass();
         war.firstRound();
         war.round();
     }

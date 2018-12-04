@@ -210,7 +210,7 @@ public class GameFacade {
         if(tips)System.out.println("exemplo MA-2, SP-4");
 
         do{
-            String comand[] = input.nextLine().split("-|,|\\s");
+            String comand[] = input.nextLine().trim().split("-|,");
             
             for (int j = 0; j < comand.length-1; j+=2) {
                 String state = comand[j].toUpperCase().trim();
