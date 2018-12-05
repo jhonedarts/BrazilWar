@@ -77,7 +77,7 @@ public class GameFacade {
     private void selectColor(int playersQuatity){
         System.out.print("\nSeleção de cores\n");
         for(int i=0; i < playersQuatity; i++){
-            System.out.print("Player "+i+":\n");
+            System.out.print("Player "+ (i+1) +":\n");
             String color = input.next();
             players.add(new Player(color));
         }
@@ -112,6 +112,26 @@ public class GameFacade {
         map.generateBattleUnitsPerRound(players);
         for (Player player : players) { 
             distribute(player);
+        }
+        for (Player player : players) {
+            int comand;
+            do{
+                System.out.println("\nJogador "+player.getColor());
+                System.out.println("Selecione uma opção: ");
+                System.out.println("(1) atacar\n(2) remanejar tropas\n(3) encerrar jogada");
+                comand = input.nextInt();
+                switch (comand){
+                    case 1:
+                        attack(player);
+                        break;
+                    case 2:
+                        reallocate(player);
+                        break;
+                    default:
+                        comand = 0;//break while
+                        break;
+                }
+            } while (comand > 0 && comand <= 2);
         }
     }
     
@@ -201,6 +221,7 @@ public class GameFacade {
      * @param player
      */
     private void distribute(Player player){
+        System.out.println("\nJogador "+player.getColor());
         System.out.println("Você tem "+player.getBattleUnitsQttTotal()+" exércitos para distribuir:");
         for(String region : parameters.getRegions()){
             if(player.hasBattleUnitsByRegion(region)){
@@ -228,7 +249,9 @@ public class GameFacade {
                             soldiersQtt = 0;
                         }   
                     }
-                    player.removeSoldiers(soldiersQtt);
+                    if(player.getBattleUnitsQtt() > 0) {
+                        player.removeSoldiers(soldiersQtt);
+                    }
                 }else{
                     System.out.println("Entrada invalida");
                 }

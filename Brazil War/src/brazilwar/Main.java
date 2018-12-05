@@ -19,7 +19,6 @@ public class Main {
         GameFacade war = new GameFacade();
         
         war.startGame();
-//        war.startGameByPass();
         war.firstRound();
         war.round();
     }
